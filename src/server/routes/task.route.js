@@ -53,6 +53,9 @@ export default router;
  *      completed:
  *        type: string
  *
+ *  UnauthorizedResponse:
+ *    description: Unauthorized, please generate a token with the corresponding endpoint
+ *
  * /tasks/:
  *  get:
  *    summary: Get all tasks
@@ -82,6 +85,8 @@ export default router;
  *              type: array
  *              items:
  *                $ref: '#/definitions/Task'
+ *      '401':
+ *        $ref: '#/definitions/UnauthorizedResponse'
  *  post:
  *    summary: Create task
  *    description: Use to create a new task
@@ -99,6 +104,8 @@ export default router;
  *          application/json:
  *            schema:
  *              $ref: '#/definitions/Task'
+ *      '401':
+ *        $ref: '#/definitions/UnauthorizedResponse'
  *
  * /tasks/{id}:
  *   get:
@@ -111,12 +118,14 @@ export default router;
  *          type: integer
  *       description: Id of task
  *     responses:
- *       200:
+ *       '200':
  *         description: OK
  *         content:
  *           application/json:
  *             schema:
  *               $ref: '#/definitions/Task'
+ *       '401':
+ *         $ref: '#/definitions/UnauthorizedResponse'
  *   put:
  *     summary: Update task
  *     description: Use to update a task by id
@@ -134,12 +143,14 @@ export default router;
  *           schema:
  *             $ref: '#/definitions/UpdateTask'
  *     responses:
- *       200:
+ *       '200':
  *         description: Updated task
  *         content:
  *           application/json:
  *             schema:
  *               $ref: '#/definitions/Task'
+ *       '401':
+ *         $ref: '#/definitions/UnauthorizedResponse'
  *   delete:
  *     summary: Delete task
  *     description: Use to delete a task by id
@@ -150,10 +161,12 @@ export default router;
  *         type: integer
  *       description: Id of task
  *     responses:
- *       200:
+ *       '200':
  *         description: Deleted task
  *         content:
  *           application/json:
  *             schema:
  *               $ref: '#/definitions/Task'
+ *       '401':
+ *         $ref: '#/definitions/UnauthorizedResponse'
  */
