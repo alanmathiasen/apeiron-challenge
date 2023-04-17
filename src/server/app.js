@@ -6,16 +6,21 @@ import {
   errorHandler,
   pageNotFoundHandler,
 } from './middlewares/errors/index.js';
-import { taskRouter } from './routes/index.js';
+import { authRouter, taskRouter } from './routes/index.js';
 
 connectDB();
+
 const app = express();
+
 app.use(express.json());
+
 app.use('/api/swagger', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
-app.get('/api/swagger.json', (req, res) => {
+app.get('/api/swagger.json', (_req, res) => {
   res.setHeader('Content-Type', 'application/json');
   res.send(swaggerSpec);
 });
+
+app.use('/api/auth', authRouter);
 app.use('/api/tasks', taskRouter);
 
 app.use(errorHandler);

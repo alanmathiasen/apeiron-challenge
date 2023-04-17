@@ -2,8 +2,35 @@ import { Router } from 'express';
 import { TaskController } from '../controllers/index.js';
 import taskValidation from '../middlewares/validation/task.validation.js';
 import { validateRequest } from '../middlewares/validation/index.js';
+import verifyJWT from '../middlewares/verifyJWT.js';
 
 const router = Router();
+
+router.use(verifyJWT);
+
+router.get('/', TaskController.getTasks);
+router.get(
+  '/:id',
+  taskValidation.isValidId,
+  validateRequest,
+  TaskController.get
+);
+router.post('/', taskValidation.create, validateRequest, TaskController.create);
+router.put(
+  '/:id',
+  taskValidation.update,
+  validateRequest,
+  TaskController.update
+);
+router.delete(
+  '/:id',
+  taskValidation.isValidId,
+  validateRequest,
+  TaskController.delete
+);
+
+export default router;
+
 /**
  * @swagger
  * definitions:
@@ -130,25 +157,3 @@ const router = Router();
  *             schema:
  *               $ref: '#/definitions/Task'
  */
-router.get('/', TaskController.getTasks);
-router.get(
-  '/:id',
-  taskValidation.isValidId,
-  validateRequest,
-  TaskController.get
-);
-router.post('/', taskValidation.create, validateRequest, TaskController.create);
-router.put(
-  '/:id',
-  taskValidation.update,
-  validateRequest,
-  TaskController.update
-);
-router.delete(
-  '/:id',
-  taskValidation.isValidId,
-  validateRequest,
-  TaskController.delete
-);
-
-export default router;
