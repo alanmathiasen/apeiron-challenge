@@ -2,11 +2,11 @@
   "name": "appeiron-challenge",
   "version": "1.0.0",
   "description": "",
-  "type": "module",
   "main": "index.js",
+  "type": "module",
   "scripts": {
     "test": "NODE_OPTIONS=--experimental-vm-modules npx jest",
-    "start": "nodemon src/server/index.js"
+    "start": "node src/server/index.js"
   },
   "keywords": [],
   "author": "",
