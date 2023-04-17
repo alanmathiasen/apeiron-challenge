@@ -53,8 +53,14 @@ export default router;
  *      completed:
  *        type: string
  *
+ *  BadRequestResponse:
+ *    description: Bad request
+ *
  *  UnauthorizedResponse:
  *    description: Unauthorized, please generate a token with the corresponding endpoint
+ *
+ *  NotFoundResponse:
+ *    description: Resource couldn't be found
  *
  * /tasks/:
  *  get:
@@ -104,8 +110,11 @@ export default router;
  *          application/json:
  *            schema:
  *              $ref: '#/definitions/Task'
+ *      '400':
+ *        $ref: '#/definitions/BadRequestResponse'
  *      '401':
  *        $ref: '#/definitions/UnauthorizedResponse'
+ *
  *
  * /tasks/{id}:
  *   get:
@@ -124,8 +133,13 @@ export default router;
  *           application/json:
  *             schema:
  *               $ref: '#/definitions/Task'
+ *       '400':
+ *          $ref: '#/definitions/BadRequestResponse'
  *       '401':
  *         $ref: '#/definitions/UnauthorizedResponse'
+ *       '404':
+ *         $ref: '#/definitions/NotFoundResponse'
+ *
  *   put:
  *     summary: Update task
  *     description: Use to update a task by id
@@ -149,8 +163,13 @@ export default router;
  *           application/json:
  *             schema:
  *               $ref: '#/definitions/Task'
+ *       '400':
+ *         $ref: '#/definitions/BadRequestResponse'
  *       '401':
  *         $ref: '#/definitions/UnauthorizedResponse'
+ *       '404':
+ *         $ref: '#/definitions/NotFoundResponse'
+ *
  *   delete:
  *     summary: Delete task
  *     description: Use to delete a task by id
@@ -167,6 +186,10 @@ export default router;
  *           application/json:
  *             schema:
  *               $ref: '#/definitions/Task'
+ *       '400':
+ *         $ref: '#/definitions/BadRequestResponse'
  *       '401':
  *         $ref: '#/definitions/UnauthorizedResponse'
+ *       '404':
+ *         $ref: '#/definitions/NotFoundResponse'
  */
